@@ -23,7 +23,7 @@ public class Dimension
     /**
      * accesor para  el alto
      */
-    public double getAlto1()    {
+    public double getAlto()    {
         return alto;
     }
 
@@ -45,8 +45,8 @@ public class Dimension
      * Devuelve una copia exacta al objeto actual
      */
     public Dimension obtenerCopia() {
-        //TODO
-        return null;
+        return new Dimension(alto, ancho, largo);
+        
 
     }
 
@@ -55,9 +55,12 @@ public class Dimension
      * (leer enunciado)
      */
     public String toString() {
-        //TODO
-        return null;
-
+         String alt = String.format("%20s%10.2f%s", "Alto: ", alto, "(cm)\n");
+         String anc = String.format("%20s%10.2f%s", "Ancho: ", ancho, "(cm)\n");
+         String lar = String.format("%20s%10.2f%s", "Largo: ", largo, "(cm)\n");
+         String all = alt + anc + lar;
+         
+         return all;
     }
 
     /**

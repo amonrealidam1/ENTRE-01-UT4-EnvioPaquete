@@ -18,8 +18,8 @@ public class Paquete
      * alto, ancho, largo (en cm) y peso 8 Kg
      */
     public Paquete()    {
-        //TODO
-         
+        dimension = new Dimension(40, 30, 50);
+        peso = 8;
 
     }
 
@@ -30,8 +30,9 @@ public class Paquete
      *  Se crea aquí el generador
      */
     public Paquete(double alto, double ancho, double largo)    {
-        //TODO
-
+        dimension = new Dimension(alto, ancho, largo);
+        generador = new Random();
+        peso = 2 + generador.nextInt(7);
     }
 
     /**
@@ -40,8 +41,8 @@ public class Paquete
      * 
      */
     public Paquete(Dimension dimension, double peso)    {
-        //TODO
-
+        this.dimension = new Dimension(dimension.getAlto(),dimension.getAncho(),dimension.getLargo());
+        this.peso = peso;
     }
 
     /**
@@ -65,9 +66,8 @@ public class Paquete
      * El volumen = alto x ancho x largo
      */
     public double calcularVolumen() {
-       //TODO
-       return 0;
-
+        
+        return (dimension.getAlto() * dimension.getAncho() * dimension.getLargo());
     }
 
     /**
@@ -75,9 +75,8 @@ public class Paquete
      * Peso volumétrico = volumen del paquete / 5000
      */
     public double calcularPesoVolumetrico() {
-        //TODO
-       return 0;
-
+        
+        return calcularVolumen() / 5000;
     }
 
     /**
@@ -86,9 +85,12 @@ public class Paquete
      *      
      */
     public double calcularPesoFacturable() {
-        //TODO
-       return 0;
-
+        if (calcularPesoVolumetrico() > peso){
+           
+           return calcularPesoVolumetrico();
+        }
+       
+        return peso;
     }
 
 
@@ -97,8 +99,7 @@ public class Paquete
      * Se obtienen copias también de los objetos que contenga
      */
     public Paquete obtenerCopia() {
-        //TODO
-       return null;
+        this.
 
     }
 
