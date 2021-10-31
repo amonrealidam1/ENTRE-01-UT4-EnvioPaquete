@@ -23,7 +23,7 @@ public class Dimension
     /**
      * accesor para  el alto
      */
-    public double getAlto()    {
+    public double getAlto1()    {
         return alto;
     }
 
