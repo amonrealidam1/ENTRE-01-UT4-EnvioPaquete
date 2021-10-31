@@ -99,8 +99,9 @@ public class Paquete
      * Se obtienen copias también de los objetos que contenga
      */
     public Paquete obtenerCopia() {
-        return new Paquete(dimension, peso);
-
+        Paquete copiaPaquete; 
+        copiaPaquete = new Paquete(dimension, peso);
+        return copiaPaquete;
     }
 
     /**
@@ -108,14 +109,16 @@ public class Paquete
      *  (leer enunciado)
      */
     public String toString() {
-       String pesor = String.format("%20s%10.2f%s", "Peso Real: ", peso, "(Kg)\n");
-       String volum = String.format("%20s%10.2f%s", "Volumen: : ",
+       
+        
+        String pesor = String.format("%20s%10.2f%s", "Peso Real: ", peso, "(Kg)\n");
+        String volum = String.format("%20s%10.2f%s", "Volumen: ",
                                     calcularVolumen() , "(cm3)\n");
-       String pesov = String.format("%20s%10.2f%s", "Peso Volumetrico: ", 
+        String pesov = String.format("%20s%10.2f%s", "Peso Volumetrico: ", 
                                     calcularPesoVolumetrico(), "(Kg)\n");
-       String all = pesor + volum + pesov;                    
+        String all = pesor + volum + pesov + "\n";                    
     
-       return "Descripcion de paquete:\n " + dimension.toString() + all;
+        return "\nDescripcion de paquete:\n" + dimension.toString() + all;
 
     }
     

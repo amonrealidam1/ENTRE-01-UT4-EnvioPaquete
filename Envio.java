@@ -55,8 +55,17 @@ public class Envio
      * (dependerá de cuántos paquetes estén a null)
      */
     public int getNumeroPaquetes() {
-        //TODO
-       return 0;
+        int aux = 0;
+        if (paquete1 != null){
+            aux ++;
+        }
+        if (paquete2 != null){
+            aux ++;
+        }
+        if (paquete3 != null){
+            aux ++;
+        }
+        return aux;
 
     }
 
@@ -65,8 +74,10 @@ public class Envio
      * (tiene exactamente 3 paquetes)
      */
     public boolean envioCompleto() {
-       //TODO
-       return false;
+        if (paquete1 != null && paquete2 != null && paquete3 != null){
+            return true;
+        }
+        return false;
 
     }
 
@@ -78,7 +89,23 @@ public class Envio
      * si se añade como primero, segundo o tercero (no han de quedar huecos)
      */
     public void addPaquete(Paquete paquete) {
-       //TODO
+        if (envioCompleto()){
+            System.out.println("No se admiten mas paquetes en el envio");
+        }
+        else {
+            if (paquete1 == null){
+                
+                paquete1 = new Paquete(paquete.getDimension(), paquete.getPeso());
+            }
+            else if (paquete2 == null){
+                
+                paquete2 = new Paquete(paquete.getDimension(), paquete.getPeso());
+            }
+            else if (paquete3 == null){
+
+                paquete3 = new Paquete(paquete.getDimension(), paquete.getPeso());
+            }
+        }
         
 
     }
@@ -95,9 +122,24 @@ public class Envio
      *  
      */
     public double calcularCosteTotalEnvio() {
-        //TODO
-       return 0;
-
+        double pesoft;
+        if (getNumeroPaquetes() == 1){
+            pesoft = paquete1.calcularPesoFacturable();
+        }
+        else if (getNumeroPaquetes() == 2){
+            pesoft = Math.ceil(paquete1.calcularPesoFacturable() + 
+                               paquete2.calcularPesoFacturable());
+        }
+        else {
+            pesoft = Math.ceil(paquete1.calcularPesoFacturable() + 
+                               paquete2.calcularPesoFacturable() + 
+                               paquete3.calcularPesoFacturable());
+        }
+        
+        double costeEnv = pesoft * PRECIO_KILO;
+        
+        return costeEnv;
+        
     }
 
     /**
@@ -106,8 +148,21 @@ public class Envio
      * (leer enunciado)
      */
     public String toString() {
-       //TODO
-       return null;
+        String coste = String.format("%20s%10.2f%s","Coste total envio: ", 
+                                    calcularCosteTotalEnvio(), "€\n");
+        String separador = "\n---------------------------------------------------";
+        if (getNumeroPaquetes() == 1){
+            return "Nº de paquetes: " + getNumeroPaquetes() + paquete1.toString() + coste + 
+                                       separador;
+        }
+        else if (getNumeroPaquetes() == 2){
+            return "Nº de paquetes: " + getNumeroPaquetes() + paquete1.toString() + 
+               paquete2.toString() + coste + separador;
+        }
+        else {
+            return "Nº de paquetes: " + getNumeroPaquetes() + paquete1.toString() + 
+            paquete2.toString() + paquete3.toString() + coste + separador;
+        }
     }
 
     /**
